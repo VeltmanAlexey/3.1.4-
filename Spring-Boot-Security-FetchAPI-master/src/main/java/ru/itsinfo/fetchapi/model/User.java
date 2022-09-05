@@ -22,6 +22,7 @@ public final class User extends AbstractEntity<Long> implements UserDetails {
     private String firstName;
 
     @Column(name = "last_name")
+    @NotEmpty(message = "LastName should not be empty")
     private String lastName;
 
     @Column(unique = true)
@@ -32,10 +33,12 @@ public final class User extends AbstractEntity<Long> implements UserDetails {
     @NotEmpty(message = "Password should not be empty")
     private String password;
 
-    @Positive(message = "Age should not be empty")
+    @Positive(message = "Age must be positive")
+    @NotEmpty(message = "Age should not be empty")
     private int age;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @NotEmpty(message = "Roles should not be empty")
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
