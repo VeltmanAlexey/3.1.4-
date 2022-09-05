@@ -1,14 +1,12 @@
-package ru.itsinfo.fetchapi.service;
+package com.veltman.service;
 
+import com.veltman.model.Role;
+import com.veltman.model.User;
 import org.springframework.lang.Nullable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import ru.itsinfo.fetchapi.model.Role;
-import ru.itsinfo.fetchapi.model.User;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface AppService extends UserDetailsService {

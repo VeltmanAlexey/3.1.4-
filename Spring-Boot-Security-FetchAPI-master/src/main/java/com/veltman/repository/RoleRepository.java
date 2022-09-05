@@ -1,7 +1,7 @@
-package ru.itsinfo.fetchapi.repository;
+package com.veltman.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.itsinfo.fetchapi.model.Role;
+import com.veltman.model.Role;
 
 public interface RoleRepository extends CrudRepository<Role, Integer> {
 }

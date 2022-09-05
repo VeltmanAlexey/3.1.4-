@@ -1,5 +1,6 @@
-package ru.itsinfo.fetchapi.config;
+package com.veltman.config;
 
+import com.veltman.service.AppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -7,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.itsinfo.fetchapi.service.AppService;
 
 @Configuration
 @EnableWebSecurity

@@ -1,5 +1,9 @@
-package ru.itsinfo.fetchapi.service;
+package com.veltman.service;
 
+import com.veltman.model.Role;
+import com.veltman.model.User;
+import com.veltman.repository.RoleRepository;
+import com.veltman.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.security.core.Authentication;
@@ -8,13 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import ru.itsinfo.fetchapi.model.Role;
-import ru.itsinfo.fetchapi.model.User;
-import ru.itsinfo.fetchapi.repository.RoleRepository;
-import ru.itsinfo.fetchapi.repository.UserRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;

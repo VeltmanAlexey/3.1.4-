@@ -1,4 +1,4 @@
-package ru.itsinfo.fetchapi.config;
+package com.veltman.config;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;

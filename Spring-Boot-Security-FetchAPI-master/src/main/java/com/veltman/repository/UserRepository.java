@@ -1,8 +1,8 @@
-package ru.itsinfo.fetchapi.repository;
+package com.veltman.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.itsinfo.fetchapi.model.User;
+import com.veltman.model.User;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package ru.itsinfo.fetchapi.config;
+package com.veltman.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

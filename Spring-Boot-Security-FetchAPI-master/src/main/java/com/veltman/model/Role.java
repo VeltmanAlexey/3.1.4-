@@ -1,4 +1,4 @@
-package ru.itsinfo.fetchapi.model;
+package com.veltman.model;
 
 import org.springframework.security.core.GrantedAuthority;
 

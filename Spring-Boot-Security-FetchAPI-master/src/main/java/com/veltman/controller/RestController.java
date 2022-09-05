@@ -1,13 +1,12 @@
-package ru.itsinfo.fetchapi.controller;
+package com.veltman.controller;
 
+import com.veltman.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.itsinfo.fetchapi.model.Role;
-import ru.itsinfo.fetchapi.model.User;
-import ru.itsinfo.fetchapi.service.AppService;
+import com.veltman.model.Role;
+import com.veltman.service.AppService;
 
 import javax.validation.Valid;
 import java.util.List;
