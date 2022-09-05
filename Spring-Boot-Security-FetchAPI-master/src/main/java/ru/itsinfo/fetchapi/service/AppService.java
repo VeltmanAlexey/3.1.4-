@@ -17,13 +17,13 @@ public interface AppService extends UserDetailsService {
 
     User getOneUser(Long id);
 
-    User insertUser(User user, BindingResult bindingResult);
+    User insertUser(User user);
 
-    User updateUser(User user, BindingResult bindingResult);
+    User updateUser(User user);
 
     void deleteUser(Long id);
 
     Iterable<Role> findAllRoles();
 
-    String getPage(Model model, HttpSession session, @Nullable Authentication auth);
+    String getPage(Model model, @Nullable Authentication auth);
 }

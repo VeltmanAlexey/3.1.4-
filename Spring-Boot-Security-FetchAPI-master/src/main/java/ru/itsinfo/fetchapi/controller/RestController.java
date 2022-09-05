@@ -33,13 +33,13 @@ public class RestController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> insert(@Valid @RequestBody User user, BindingResult bindingResult) {
-        return ResponseEntity.ok(appService.insertUser(user, bindingResult));
+    public ResponseEntity<User> insert(@Valid @RequestBody User user) {
+        return ResponseEntity.ok(appService.insertUser(user));
     }
 
     @PutMapping("/users")
-    public ResponseEntity<User> update(@Valid @RequestBody User user, BindingResult bindingResult) {
-        return ResponseEntity.ok(appService.updateUser(user, bindingResult));
+    public ResponseEntity<User> update(@Valid @RequestBody User user) {
+        return ResponseEntity.ok(appService.updateUser(user));
     }
 
     @DeleteMapping("/users/{id}")

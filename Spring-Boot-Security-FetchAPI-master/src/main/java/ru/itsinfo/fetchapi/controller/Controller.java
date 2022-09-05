@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.itsinfo.fetchapi.service.AppService;
 
-import javax.servlet.http.HttpSession;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -20,8 +19,8 @@ public class Controller {
     }
 
     @GetMapping({"", "/"})
-    public String main(Model model, HttpSession session, @Nullable Authentication auth) {
-        return appService.getPage(model, session, auth);
+    public String main(Model model, @Nullable Authentication auth) {
+        return appService.getPage(model, auth);
     }
 
     @GetMapping("/access-denied")
