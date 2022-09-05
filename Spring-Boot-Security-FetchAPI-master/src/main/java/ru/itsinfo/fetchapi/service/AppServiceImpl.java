@@ -8,11 +8,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import ru.itsinfo.fetchapi.model.Role;
 import ru.itsinfo.fetchapi.model.User;
 import ru.itsinfo.fetchapi.repository.RoleRepository;
 import ru.itsinfo.fetchapi.repository.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 
@@ -50,6 +54,7 @@ public class AppServiceImpl implements AppService {
     }
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("Username %s not found", email))
@@ -57,16 +62,19 @@ public class AppServiceImpl implements AppService {
     }
 
     @Override
+    @Transactional
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
+    @Transactional
     public User getOneUser(Long id) {
         return userRepository.getOne(id);
     }
 
     @Override
+    @Transactional
     public User insertUser(User user) {
 
         String oldPassword = user.getPassword();
@@ -80,6 +88,7 @@ public class AppServiceImpl implements AppService {
     }
 
     @Override
+    @Transactional
     public User updateUser(User user) {
 
         String oldPassword = user.getPassword();
@@ -96,11 +105,13 @@ public class AppServiceImpl implements AppService {
     }
 
     @Override
+    @Transactional
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
     @Override
+    @Transactional
     public Iterable<Role> findAllRoles() {
         return roleRepository.findAll();
     }
