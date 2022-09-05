@@ -12,13 +12,13 @@ import ru.itsinfo.fetchapi.service.AppService;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
+@org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api")
-public class ApplicationRestController {
+public class RestController {
     private final AppService appService;
 
     @Autowired
-    public ApplicationRestController(AppService appService) {
+    public RestController(AppService appService) {
         this.appService = appService;
     }
 

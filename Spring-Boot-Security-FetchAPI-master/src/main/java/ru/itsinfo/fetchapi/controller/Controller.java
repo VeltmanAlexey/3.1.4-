@@ -3,20 +3,19 @@ package ru.itsinfo.fetchapi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.itsinfo.fetchapi.service.AppService;
 
 import javax.servlet.http.HttpSession;
 
-@Controller
-public class ApplicationController {
+@org.springframework.stereotype.Controller
+public class Controller {
 
     private final AppService appService;
 
     @Autowired
-    public ApplicationController(AppService appService) {
+    public Controller(AppService appService) {
         this.appService = appService;
     }
 

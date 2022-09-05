@@ -11,7 +11,7 @@ import ru.itsinfo.fetchapi.service.AppService;
 
 @Configuration
 @EnableWebSecurity
-public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // сервис, с помощью которого тащим пользователя
     private final AppService appService;
@@ -22,9 +22,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
-    public ApplicationSecurityConfig(AppService appService,
-                                     PasswordEncoder passwordEncoder,
-                                     SuccessUserHandler successUserHandler) {
+    public SecurityConfig(AppService appService,
+                          PasswordEncoder passwordEncoder,
+                          SuccessUserHandler successUserHandler) {
         this.appService = appService;
         this.passwordEncoder = passwordEncoder;
         this.successUserHandler = successUserHandler;

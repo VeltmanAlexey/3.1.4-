@@ -8,8 +8,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "roles")
-public final class Role extends AbstractEntity<Integer> implements GrantedAuthority {
-    private static final long serialVersionUID = 7217778059836250424L;
+public class Role implements GrantedAuthority {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @Column(unique = true)
     private String name;
@@ -35,6 +38,13 @@ public final class Role extends AbstractEntity<Integer> implements GrantedAuthor
     public void setName(String name) {
         this.name = name;
     }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public String getAuthority() {
@@ -43,6 +53,32 @@ public final class Role extends AbstractEntity<Integer> implements GrantedAuthor
 
     @Override
     public String toString() {
-        return String.format("Role [id = %d; name = %s;]", this.getId(), name);
+        return String.format("Role [id = %d; name = %s;]", id, name);
+    }
+
+
+    @Override
+    public int hashCode() {
+        int hashCode = 17;
+        hashCode += 0 == id ? 0 : id * 31;
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Role other = (Role) obj;
+        if (id == 0 || other.getId() == 0) {
+            return false;
+        }
+        return true;
     }
 }

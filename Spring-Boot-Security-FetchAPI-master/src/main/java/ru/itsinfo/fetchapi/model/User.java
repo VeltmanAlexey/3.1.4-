@@ -12,9 +12,13 @@ import javax.validation.constraints.Size;
 import java.util.*;
 
 @Entity
-@Table(name = "users", indexes = {@Index(columnList = "name, last_name ASC")})
-public final class User extends AbstractEntity<Long> implements UserDetails {
-    private static final long serialVersionUID = 2715270014679085151L;
+@Table(name = "users")
+public final class User implements UserDetails {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(name = "name")
     @NotEmpty(message = "Name should not be empty")
@@ -34,7 +38,6 @@ public final class User extends AbstractEntity<Long> implements UserDetails {
     private String password;
 
     @Positive(message = "Age must be positive")
-    @NotEmpty(message = "Age should not be empty")
     private int age;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -52,6 +55,10 @@ public final class User extends AbstractEntity<Long> implements UserDetails {
         this.email = email;
         this.password = password;
         this.roles = roles;
+    }
+
+    public boolean isNew() {
+        return 0 == id;
     }
 
     public String getFirstName() {
@@ -76,6 +83,14 @@ public final class User extends AbstractEntity<Long> implements UserDetails {
 
     public String getEmail() {
         return email;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setEmail(String email) {
@@ -155,6 +170,31 @@ public final class User extends AbstractEntity<Long> implements UserDetails {
     @Override
     public String toString() {
         return String.format("User [id = %d; firstName = %s; lastName = %s; email = %s; password = %s; roles = (%s)]",
-                this.getId(), firstName, lastName, email, password, Collections.singletonList(roles));
+                id, firstName, lastName, email, password, Collections.singletonList(roles));
+    }
+
+    @Override
+    public int hashCode() {
+        int hashCode = 17;
+        hashCode += 0 == id ? 0 : id * 31;
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        User other = (User) obj;
+        if (id == 0 || other.getId() == 0) {
+            return false;
+        }
+        return true;
     }
 }
