@@ -5,6 +5,7 @@ import com.veltman.model.User;
 import com.veltman.repository.RoleRepository;
 import com.veltman.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.lang.Nullable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +13,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -86,7 +90,9 @@ public class AppServiceImpl implements AppService {
 
     @Override
     @Transactional
-    public User updateUser(User user) {
+    public User updateUser(User user, BindingResult bindingResult) {
+
+        checkBindingResultForPasswordField(bindingResult);
 
         String oldPassword = user.getPassword();
         user.setPassword(user.getPassword().isEmpty() ?
@@ -94,11 +100,27 @@ public class AppServiceImpl implements AppService {
                 passwordEncoder.encode(user.getPassword()));
         try {
             user = userRepository.save(user);
-        } catch (Exception e) {
+        } catch (DataIntegrityViolationException e) {
             user.setPassword(oldPassword);
         }
 
         return user;
+    }
+
+    private BindingResult checkBindingResultForPasswordField(BindingResult bindingResult) {
+        if (!bindingResult.hasFieldErrors()) {
+            return bindingResult;
+        }
+
+        User user = (User) bindingResult.getTarget();
+        BindingResult newBindingResult = new BeanPropertyBindingResult(user, bindingResult.getObjectName());
+        for (FieldError error : bindingResult.getFieldErrors()) {
+            if (!user.isNew() && !error.getField().equals("password")) {
+                newBindingResult.addError(error);
+            }
+        }
+
+        return newBindingResult;
     }
 
     @Override

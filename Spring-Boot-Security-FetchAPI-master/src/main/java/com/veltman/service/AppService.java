@@ -6,6 +6,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface AppService extends UserDetailsService {
 
     User insertUser(User user);
 
-    User updateUser(User user);
+    User updateUser(User user, BindingResult bindingResult);
 
     void deleteUser(Long id);
 

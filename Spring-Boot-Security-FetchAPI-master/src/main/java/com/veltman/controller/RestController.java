@@ -4,6 +4,7 @@ import com.veltman.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.veltman.model.Role;
 import com.veltman.service.AppService;
@@ -37,8 +38,8 @@ public class RestController {
     }
 
     @PutMapping("/users")
-    public ResponseEntity<User> update(@Valid @RequestBody User user) {
-        return ResponseEntity.ok(appService.updateUser(user));
+    public ResponseEntity<User> update(@Valid @RequestBody User user, BindingResult bindingResult) {
+        return ResponseEntity.ok(appService.updateUser(user, bindingResult));
     }
 
     @DeleteMapping("/users/{id}")
